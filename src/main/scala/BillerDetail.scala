@@ -12,7 +12,7 @@ case object internet extends Category
 case object food extends Category
 case object car extends Category
 
-case class BillerDetail(billerCategory:Category, billerName:String, acnNum:String, transactionDate:String, amount:Long,totalIteration:Int,
+case class BillerDetail(billerCategory:Category, billerName:String, acnNum:Long, transactionDate:String, amount:Long,totalIteration:Int,
                         executedIter:Int,paidAmount:Long) {
 
 }

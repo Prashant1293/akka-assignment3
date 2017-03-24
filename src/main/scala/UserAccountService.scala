@@ -8,24 +8,37 @@ class UserAccountService {
   val userDetails = ListBuffer[UserDetail]()
 
   def userNameVerify(user: UserDetail, num: Int) = {
-    userDetails.toList match {
-      case head :: tail => {
-        if (head.userName equals user.userName)
-          println("UserName already Exists")
-        else
-          userDetails.append(user.copy(acountNumber = num))
-      }
-      case head :: Nil => {
-        if (head.userName equals user.userName)
-          println("UserName already Exists")
-        else
-          userDetails.append(user.copy(acountNumber = num))
 
-      }
-      case Nil => userDetails.append(user.copy(acountNumber = num))
+    def iterate(userList:List[UserDetail]):Boolean= {
 
+      userList match {
+
+        case head :: tail =>{
+          if (head.userName equals user.userName)
+            true
+          else
+            iterate(tail)
+        }
+
+        case head :: Nil => {
+
+          if (head.userName equals user.userName)
+            true
+          else
+            false
+        }
+        case Nil=>false
+      }
     }
+    val check=iterate(userDetails.toList)
+
+    if(check==true)
+      println("UserName already exists !!")
+    else
+      userDetails.append(user.copy(acountNumber = num, userName = user.userName + num + 1))
+
   }
 }
 
+object UserAccountService extends UserAccountService
 
