@@ -2,7 +2,7 @@
   * Created by prashant on 24/3/17.
   */
 
-class DBInMemory {
+object DBInMemory {
 
   val database= collection.mutable.Map[String, UserDetail]()
 
@@ -28,32 +28,22 @@ class DBInMemory {
             null
         }
         case Nil=>{
-          println("No data found")
+          println("Sorry No data found....")
           null
         }
       }
     }
-    // println(user+" >>>>>>>>> "+SalaryDepositService.userAccount.toList)
     val check=iterate(SalaryDepositService.userAccount.toList)
-    // println(check)
     if(check!=null)
       database += (check.userName -> check)
-
-
-    //println(check.username)
   }
   def paying(user:UserDetail,bill:BillerDetail)=synchronized{
-
-    //    database foreach {case (key, value) => println (key + "-->" + value)}
-    //    println()
     if(bill.amount<user.amount) {
-
-      database(user.userName) = UserDetail(user.actHolderName, user.address, user.userName, user.amount - bill.amount, user.acountNumber)
-      println(user.userName+">>>>>>>>"+database)
+      val newUserAccount=user.copy(amount = user.amount-bill.amount )
+      database -=user.userName
+      database +=(newUserAccount.userName->newUserAccount)
     }
     else
-      println("Insufficient balance !!")
-    //    database foreach {case (key, value) => println (key + "-->" + value)}
+      println("Sorry You Don't Have sufficient balance !!")
   }
 }
-object DBInMemory extends DBInMemory

@@ -4,7 +4,7 @@
 		module="akka3_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20170323161207"
+		publication="20170327133223"
 	>
 		<description>
 		akka3
@@ -37,7 +37,11 @@
 		<dependency org="org.scala-lang" name="scala-library" rev="2.11.8" conf="scala-tool->default,optional(default);compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-actor_2.11" rev="2.4.17" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-testkit_2.11" rev="2.4.17" conf="compile->default(compile)"/>
-		<dependency org="org.scalatest" name="scalatest_2.12" rev="3.2.0-SNAP4" conf="compile->default(compile)"/>
+		<dependency org="org.scalatest" name="scalatest_2.12" rev="3.0.1" conf="compile->default(compile)"/>
 		<dependency org="log4j" name="log4j" rev="1.2.17" conf="compile->default(compile)"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-firefox-driver" rev="3.0.1" conf="compile->default(compile)"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-chrome-driver" rev="3.0.1" conf="compile->default(compile)"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-java" rev="3.0.1" conf="compile->default(compile)"/>
+		<dependency org="org.seleniumhq.selenium" name="selenium-server" rev="3.0.1" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

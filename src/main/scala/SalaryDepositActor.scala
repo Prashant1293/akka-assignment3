@@ -21,34 +21,17 @@ class SalaryDepositActor extends Actor{
 
     case (accNumber:Long,username:String,amount:Long)=>{
 
-
-      // Thread.sleep(1000)
       val check=SalaryDepositService.depositing(accNumber,username,amount)
-      //println(SalaryDepositService.userAccount.toList)
-
-      //      if(user!=Nil)
-      //        println(count+1)
-      // println(username)
       if(check==true)
         database ! username
 
     }
     case user:UserDetail=>{
 
-      //      implicit val timeout = Timeout(1000 seconds)
-      //      val f=phone ? user
-      //      Await.result(f,timeout.duration)
-      //      //implicit val timeout1 = Timeout(1000 seconds)
-      //      val f1=electricity ? user
-      //      Await.result(f1,timeout.duration)
-      //      //implicit val timeout2 = Timeout(1000 seconds)
-      //      val f2=electricity ? user
-      //      Await.result(f2,timeout.duration)
       phone ! user
       electricity ! user
       internet ! user
 
     }
-    //case _=>println("no")
   }
 }

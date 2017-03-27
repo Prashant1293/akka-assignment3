@@ -1,7 +1,11 @@
+
+
 /**
   * Created by prashant on 24/3/17.
   */
-import akka.actor.{Actor, Props}
+
+import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
+import scala.concurrent.duration._
 
 class DatabaseRepo extends Actor{
 
@@ -10,17 +14,21 @@ class DatabaseRepo extends Actor{
   override def receive = {
 
     case user:String=>{
-      // Thread.sleep(2000)
-      //println(user)
       DBInMemory.storing(user)
-      // println(DBInMemory.database)
-      //DBInMemory.database foreach {case (key, value) => println (key + "-->" + value)}
       salaryDepositActor ! DBInMemory.database(user)
     }
     case (user:UserDetail,bill:BillerDetail)=>{
 
       DBInMemory.paying(user,bill)
-      //      sender() ! "Done"
+
     }
+    case list:SalaryDepositService=>{
+
+      log.info(""+list)
+      //println()
+    }
+
   }
 }
+
+
